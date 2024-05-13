@@ -68,3 +68,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Reactを使用して、基本的なToDoアプリを作成してください。
+
+機能要件
+・ユーザーがタスクを追加、表示、削除できる機能
+・追加された各タスクの完了状況を表示・切り替える機能も実装してください。
+
+ルール
+各画面要素は適切な範囲でコンポーネントに切り出してください。
+
+アウトプット
+
+- 機能要件を満たしていることが確認できる動画
