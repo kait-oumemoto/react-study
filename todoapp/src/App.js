@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 export const App = () => {
@@ -6,13 +6,11 @@ export const App = () => {
   const [todoText, setTodoText] = useState("");
   // 未完了TODOを定義
   // TODOは複数作成できるようにするため、配列[]で定義
-  const [incompleteTodos, setIncompleteTodos] = useState([
-    "タスク1",
-    "タスク2",
-  ]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+
   // 完了TODOを定義
   // TODOは複数作成できるようにするため、配列[]で定義
-  const [completeTodos, setCompleteTodos] = useState(["タスク3"]);
+  const [completeTodos, setCompleteTodos] = useState([]);
   // 関数の引数(event)には、入力された情報が格納されており、event.target.valueとすることで入力された値を取得できる
   // 取得した値をsetTodoTextの引数に渡すことで、todoTextのstateに反映させている。
   const onChangeTodoText = (event) => setTodoText(event.target.value);
@@ -22,25 +20,35 @@ export const App = () => {
     if (todoText === "") return;
     // newTodos変数には、今現在表示されているタスクと新たに追加したタスクを結合した新たな配列が格納されている
     // スプレッド構文(...)を使用して今現在表示されているタスクを格納
-    // todoTextには、新たに追加したタスクが格納されている。
+    // todoTextには、新たに追加したタスクが格納されている
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     // setTodoText("");とすることで、追加後に入力欄をリセットしている。
     setTodoText("");
-    // newTodos(現在の未完了TODO)からspliceメソッドを使用して削除したタスクを配列から取り除き、新たな配列を生成し、setIncompleteTodosに更新後の配列を渡している。
-    const onClickDelete = (index) => {
-      const newTodos = [...incompleteTodos];
-      newTodos.splice(index, 1);
-      setIncompleteTodos(newTodos);
-    };
-    const onClickComplete = (index) => {
-      const newIncompleteTodos = [...incompleteTodos];
-      newIncompleteTodos.splice(index, 1);
-      setIncompleteTodos(newIncompleteTodos);
+  };
+  // newTodos(現在の未完了TODO)からspliceメソッドを使用して削除したタスクを配列から取り除き、新たな配列を生成し、setIncompleteTodosに更新後の配列を渡している。
+  const onClickDelete = (index) => {
+    const newTodos = [...incompleteTodos];
+    newTodos.splice(index, 1);
+    setIncompleteTodos(newTodos);
+  };
 
-      const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
-      setCompleteTodos(newCompleteTodos);
-    };
+  const onClickComplete = (index) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+    setIncompleteTodos(newIncompleteTodos);
+    // newCompleteTodos変数には、完了TODOリストに表示されているタスクと完了したタスクを結合した新たな配列が格納されている。
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+    setCompleteTodos(newCompleteTodos);
+  };
+
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+    setCompleteTodos(newCompleteTodos);
+
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
   };
   return (
     <>
@@ -66,7 +74,8 @@ export const App = () => {
                 {/* <li>{todo}</li>とすることで配列に格納されている要素を順番に表示 */}
                 <li>{todo}</li>
                 <button onClick={() => onClickComplete(index)}>完了</button>
-                {/* map関数の第2引数に設定したindexには、タスクのインデックス番号が格納されており、その値をもとに削除したタスクの判定するため、onClickDelete関数の引数に渡している。 */}
+                {/* map関数の第2引数に設定したindexには、タスクのインデックス番号が格納されており、
+                 その値をもとに削除したタスクの判定するため、onClickDelete関数の引数に渡している。 */}
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
@@ -77,13 +86,12 @@ export const App = () => {
         <p className="title">完了のTODO</p>
         <ul>
           {/* map関数でループ処理 */}
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return (
-              // ループ内で返却している親タグにkey={引数名}を記述
               <div key={todo} className="list-row">
                 {/* <li>{todo}</li>とすることで配列に格納されている要素を順番に表示 */}
                 <li>{todo}</li>
-                <button>戻る</button>
+                <button onClick={() => onClickBack(index)}>戻る</button>
               </div>
             );
           })}
@@ -92,4 +100,5 @@ export const App = () => {
     </>
   );
 };
+
 export default App;
