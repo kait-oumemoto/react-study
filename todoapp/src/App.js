@@ -33,6 +33,14 @@ export const App = () => {
       newTodos.splice(index, 1);
       setIncompleteTodos(newTodos);
     };
+    const onClickComplete = (index) => {
+      const newIncompleteTodos = [...incompleteTodos];
+      newIncompleteTodos.splice(index, 1);
+      setIncompleteTodos(newIncompleteTodos);
+
+      const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+      setCompleteTodos(newCompleteTodos);
+    };
   };
   return (
     <>
@@ -57,7 +65,7 @@ export const App = () => {
               <div key={todo} className="list-row">
                 {/* <li>{todo}</li>とすることで配列に格納されている要素を順番に表示 */}
                 <li>{todo}</li>
-                <button>完了</button>
+                <button onClick={() => onClickComplete(index)}>完了</button>
                 {/* map関数の第2引数に設定したindexには、タスクのインデックス番号が格納されており、その値をもとに削除したタスクの判定するため、onClickDelete関数の引数に渡している。 */}
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
