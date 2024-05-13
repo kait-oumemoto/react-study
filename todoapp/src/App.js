@@ -27,6 +27,12 @@ export const App = () => {
     setIncompleteTodos(newTodos);
     // setTodoText("");とすることで、追加後に入力欄をリセットしている。
     setTodoText("");
+    // newTodos(現在の未完了TODO)からspliceメソッドを使用して削除したタスクを配列から取り除き、新たな配列を生成し、setIncompleteTodosに更新後の配列を渡している。
+    const onClickDelete = (index) => {
+      const newTodos = [...incompleteTodos];
+      newTodos.splice(index, 1);
+      setIncompleteTodos(newTodos);
+    };
   };
   return (
     <>
@@ -45,14 +51,15 @@ export const App = () => {
         <p className="title">未完了のTODO</p>
         <ul>
           {/* map関数でループ処理 */}
-          {incompleteTodos.map((todo) => {
+          {incompleteTodos.map((todo, index) => {
             return (
               // ループ内で返却している親タグにkey={引数名}を記述
               <div key={todo} className="list-row">
                 {/* <li>{todo}</li>とすることで配列に格納されている要素を順番に表示 */}
                 <li>{todo}</li>
                 <button>完了</button>
-                <button>削除</button>
+                {/* map関数の第2引数に設定したindexには、タスクのインデックス番号が格納されており、その値をもとに削除したタスクの判定するため、onClickDelete関数の引数に渡している。 */}
+                <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
           })}
