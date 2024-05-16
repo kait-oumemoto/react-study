@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useState, createContext } from "react";
 import Home from "./Home";
 import "./App.css";
-
+// stateを子コンポーネントが呼び出せるようにexport
 export const MyContext = createContext();
 
 function App() {

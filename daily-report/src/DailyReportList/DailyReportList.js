@@ -1,7 +1,8 @@
 import { MyContext } from "../App";
 import { useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import "./DailyReportList.css";
+// stateをuseContextで親コンポーネントから呼び出している
 const DailyReportList = () => {
   const [report, setReport] = useContext(MyContext);
   const reports = [...report];
@@ -16,7 +17,7 @@ const DailyReportList = () => {
     // '/daily-report-Content'ページに遷移する
     navigate(`/daily-report-content/${encodeURIComponent(title)}`);
   };
-
+  // 特定のタイトルを持つレポートを削除するための関数
   const eraseClick = (title) => {
     const updatedReports = reports.filter((report) => report.title !== title);
     setReport(updatedReports);
@@ -31,14 +32,16 @@ const DailyReportList = () => {
           // 上記で設定したindexを一意のキーにしreportsに入ったインデックスを使う
           <li key={index} className="report-item">
             {/*reportに入っているdateを呼び出す  */}
-            <h3>{report.date}</h3>
+            <h3>日時：{report.date}</h3>
             {/*reportに入っているtitleを呼び出す  */}
             <h3
+              className="report-title"
               onClick={() => handleClick(report.title)}
-              style={{ cursor: "pointer", color: "blue" }}
             >
+              タイトル：
               {report.title}
             </h3>
+            {/* クリックされたらeraseClick関数が実行 */}
             <button onClick={() => eraseClick(report.title)}>消去</button>
           </li>
         ))}
