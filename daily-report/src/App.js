@@ -7,6 +7,7 @@ import Home from "./Home";
 import "./App.css";
 
 export const MyContext = createContext();
+
 function App() {
   const [state, setState] = useState([]);
   return (
@@ -16,6 +17,7 @@ function App() {
           <h3>日報管理アプリ</h3>
           <ul className="nav-links">
             <li>
+              {/* Linkをクッリクすることで　toに入れられたページへ遷移 */}
               <Link to="/">ホームページ</Link>
             </li>
           </ul>
@@ -29,7 +31,7 @@ function App() {
             <Route path="/daily-report-form" element={<DailyReportForm />} />
             <Route path="/daily-report-list" element={<DailyReportList />} />
             <Route
-              path="/daily-report-Content"
+              path="/daily-report-content/:title"
               element={<DailyReportContent />}
             />
           </Routes>
