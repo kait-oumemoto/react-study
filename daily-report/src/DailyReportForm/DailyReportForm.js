@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MyContext } from "../App";
 import "./DailyReportForm.css";
-// import { Header } from "./components/header";
 
 function DailyReportForm() {
+  const [reports, setReports] = useContext(MyContext);
   const [formData, setFormData] = useState({
     date: "",
     title: "",
     content: "",
   });
+
   const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,6 +37,7 @@ function DailyReportForm() {
 
     if (Object.keys(newErrors).length === 0) {
       console.log("データを送信しました");
+      setReports([...reports, formData]);
       setFormData({ date: "", title: "", content: "" });
       setErrors({});
     } else {
@@ -47,11 +50,11 @@ function DailyReportForm() {
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
           <label className="label">日時：</label>
-          {errors.name && <span className="error">{errors.name}</span>}
+          {errors.date && <span className="error">{errors.date}</span>}
           <input
             type="date"
-            name="name"
-            value={formData.name}
+            name="date"
+            value={formData.date}
             onChange={handleChange}
             className="input"
           />
@@ -71,7 +74,6 @@ function DailyReportForm() {
           <label className="label">内容：</label>
           {errors.content && <span className="error">{errors.content}</span>}
           <textarea
-            type="text"
             name="content"
             value={formData.content}
             onChange={handleChange}
