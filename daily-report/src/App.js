@@ -9,7 +9,7 @@ import "./App.css";
 export const MyContext = createContext();
 
 function App() {
-  const [state, setState] = useState([]);
+  const [dailyReportList, setDailyReportList] = useState([]);
   return (
     <Router>
       <div>
@@ -23,10 +23,9 @@ function App() {
           </ul>
         </nav>
         {/* 各コンポーネントに渡すstateを設定 */}
-        <MyContext.Provider value={[state, setState]}>
-          {/* React Routerでページ遷移をできるようにしている */}
+        <MyContext.Provider value={[dailyReportList, setDailyReportList]}>
+          {/* ルーティング（URLによる指定に基づいて適切なページやデータを返す） */}
           <Routes>
-            {/* 画面に遷移できるReactアプリケーションの設定 */}
             <Route path="/Home" element={<Home />} />
             <Route path="/daily-report-form" element={<DailyReportForm />} />
             <Route path="/daily-report-list" element={<DailyReportList />} />
