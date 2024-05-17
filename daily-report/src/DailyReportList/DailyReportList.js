@@ -5,10 +5,10 @@ import "./DailyReportList.css";
 // stateをuseContextで親コンポーネントから呼び出している
 const DailyReportList = () => {
   const [report, setReport] = useContext(MyContext);
-  const reports = [...report];
+  // const reports = [...report];
 
   // 日付順にソート（順番に並び替える）
-  reports.sort((a, b) => new Date(b.date) - new Date(a.date));
+  report.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // navigateオブジェクトを取得しReact Routerの内部でページ遷移を管理するために使用
   let navigate = useNavigate();
@@ -19,7 +19,7 @@ const DailyReportList = () => {
   };
   // 特定のタイトルを持つレポートを削除するための関数
   const eraseClick = (title) => {
-    const updatedReports = reports.filter((report) => report.title !== title);
+    const updatedReports = report.filter((report) => report.title !== title);
     setReport(updatedReports);
   };
 
@@ -27,8 +27,8 @@ const DailyReportList = () => {
     <div className="reports-List">
       <h2 className="reports-title">日報一覧</h2>
       <ul>
-        {/* reports 配列の各要素に対して map 関数を使用し、各要素を順番に処理 */}
-        {reports.map((report, index) => (
+        {/* report 配列の各要素に対して map 関数を使用し、各要素を順番に処理 */}
+        {report.map((report, index) => (
           // 上記で設定したindexを一意のキーにしreportsに入ったインデックスを使う
           <li key={index} className="report-item">
             {/*reportに入っているdateを呼び出す  */}

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const DailyReportContent = () => {
   const { title } = useParams();
   const [report, setReport] = useContext(MyContext);
-  const reports = [...report];
+
   let navigate = useNavigate();
 
   const returnClick = () => {
@@ -15,7 +15,7 @@ const DailyReportContent = () => {
 
   // 特定のタイトルを持つレポートを削除するための関数
   const eraseClick = () => {
-    const updatedReports = reports.filter((report) => report.title !== title);
+    const updatedReports = report.filter((report) => report.title !== title);
     // フィルタリング後の配列でstateを更新
     setReport(updatedReports);
     // 一覧ページに遷移
@@ -23,7 +23,7 @@ const DailyReportContent = () => {
   };
 
   // 指定されたタイトルのレポートを検索
-  const reportDetail = reports.find((report) => report.title === title);
+  const reportDetail = report.find((report) => report.title === title);
 
   return (
     <div className="report-content">
