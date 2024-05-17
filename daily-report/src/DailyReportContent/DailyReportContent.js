@@ -1,4 +1,5 @@
 import { MyContext } from "../App";
+import "./DailyReportContent.css";
 import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 const DailyReportContent = () => {
@@ -27,7 +28,9 @@ const DailyReportContent = () => {
   return (
     <div className="report-content">
       <h2 className="report-title">日報詳細</h2>
-      <button onClick={returnClick}>一覧に戻る</button>
+      <button className="return-Button" onClick={returnClick}>
+        一覧に戻る
+      </button>
       {/* 三項演算子を用いてレポートがあればだしてなければレポートが見つかりませんを返す */}
       {reportDetail ? (
         <div className="report-detail">

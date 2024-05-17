@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
-      <h2>ホームページ</h2>
+      <h2>ホーム</h2>
       <p></p>
       <nav>
         <ul>

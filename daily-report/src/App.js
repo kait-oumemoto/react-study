@@ -18,7 +18,7 @@ function App() {
           <ul className="nav-links">
             <li>
               {/* Linkをクッリクすることで　toに入れられたページへ遷移 */}
-              <Link to="/">ホームページ</Link>
+              <Link to="/Home">ホーム</Link>
             </li>
           </ul>
         </nav>
@@ -27,7 +27,7 @@ function App() {
           {/* React Routerでページ遷移をできるようにしている */}
           <Routes>
             {/* 画面に遷移できるReactアプリケーションの設定 */}
-            <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Home />} />
             <Route path="/daily-report-form" element={<DailyReportForm />} />
             <Route path="/daily-report-list" element={<DailyReportList />} />
             <Route
