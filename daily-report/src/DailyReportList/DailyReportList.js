@@ -5,7 +5,6 @@ import "./DailyReportList.css";
 // stateをuseContextで親コンポーネントから呼び出している
 const DailyReportList = () => {
   const [report, setReport] = useContext(MyContext);
-  // const reports = [...report];
 
   // 日付順にソート（順番に並び替える）
   report.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -29,7 +28,7 @@ const DailyReportList = () => {
       <ul>
         {/* report 配列の各要素に対して map 関数を使用し、各要素を順番に処理 */}
         {report.map((report, index) => (
-          // 上記で設定したindexを一意のキーにしreportsに入ったインデックスを使う
+          // 上記で設定したindexを一意のキーにし指定された要素をデータから検索し、その位置を返す
           <li key={index} className="report-item">
             {/*reportに入っているdateを呼び出す  */}
             <h3>日時：{report.date}</h3>
