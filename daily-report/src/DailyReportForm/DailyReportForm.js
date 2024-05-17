@@ -44,8 +44,13 @@ function DailyReportForm() {
     // newErrorsの中に何もない（エラーメッセージが一つもない）ことを確認しなければ下記を実行する
     if (Object.keys(newErrors).length === 0) {
       console.log("データを送信しました");
+      // 新しいIDを生成
+      const newReport = {
+        ...formData,
+        id: reports.length > 0 ? reports[reports.length - 1].id + 1 : 1,
+      };
       // 送信されたreportsを配列としてsetReportsにいれる
-      setReports([...reports, formData]);
+      setReports([...reports, newReport]);
       // 中身を空にする
       setFormData({ date: "", title: "", content: "" });
       setErrors({});

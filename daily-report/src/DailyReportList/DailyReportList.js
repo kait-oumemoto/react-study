@@ -12,13 +12,13 @@ const DailyReportList = () => {
   // navigateオブジェクトを取得しReact Routerの内部でページ遷移を管理するために使用
   let navigate = useNavigate();
 
-  const handleClick = (title) => {
+  const handleClick = (id) => {
     // '/daily-report-Content'ページに遷移する
-    navigate(`/daily-report-content/${encodeURIComponent(title)}`);
+    navigate(`/daily-report-content/${encodeURIComponent(id)}`);
   };
   // 特定のタイトルを持つレポートを削除するための関数
-  const eraseClick = (title) => {
-    const updatedReports = report.filter((report) => report.title !== title);
+  const eraseClick = (id) => {
+    const updatedReports = report.filter((report) => report.id !== id);
     setReport(updatedReports);
   };
 
@@ -33,15 +33,12 @@ const DailyReportList = () => {
             {/*reportに入っているdateを呼び出す  */}
             <h3>日時：{report.date}</h3>
             {/*reportに入っているtitleを呼び出す  */}
-            <h3
-              className="report-title"
-              onClick={() => handleClick(report.title)}
-            >
+            <h3 className="report-title" onClick={() => handleClick(report.id)}>
               タイトル：
               {report.title}
             </h3>
             {/* クリックされたらeraseClick関数が実行 */}
-            <button onClick={() => eraseClick(report.title)}>消去</button>
+            <button onClick={() => eraseClick(report.id)}>消去</button>
           </li>
         ))}
       </ul>

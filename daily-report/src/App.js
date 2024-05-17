@@ -20,6 +20,12 @@ function App() {
               {/* Linkをクッリクすることで　toに入れられたページへ遷移 */}
               <Link to="/Home">ホーム</Link>
             </li>
+            <li>
+              <Link to="/daily-report-form">日報作成画面</Link>
+            </li>
+            <li>
+              <Link to="/daily-report-list">日報一覧</Link>
+            </li>
           </ul>
         </nav>
         {/* 各コンポーネントに渡すstateを設定 */}
@@ -30,7 +36,7 @@ function App() {
             <Route path="/daily-report-form" element={<DailyReportForm />} />
             <Route path="/daily-report-list" element={<DailyReportList />} />
             <Route
-              path="/daily-report-content/:title"
+              path="/daily-report-content/:id"
               element={<DailyReportContent />}
             />
           </Routes>
