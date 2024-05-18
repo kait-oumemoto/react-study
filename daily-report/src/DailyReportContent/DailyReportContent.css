@@ -1,0 +1,11 @@
+.report-detail {
+  margin: 10%;
+  padding: 5%;
+  display: grid;
+  border: 1px solid #333333;
+  border-radius: 10px;
+}
+.report-content {
+  margin: 10%;
+  /* display: flex; */
+}
