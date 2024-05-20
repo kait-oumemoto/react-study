@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./header.css"; // Headerコンポーネントに対応するCSSファイルをインポート
-
+import "./header.css";
+// ヘッダーコンポーネント
 const Header = () => {
   return (
     <header className="header">
@@ -14,7 +14,7 @@ const Header = () => {
             <Link to="/image">犬の画像一覧画面</Link>
           </li>
           <li>
-            <Link to="/image">お気に入り画像</Link>
+            <Link to="/Favorite">お気に入り画像</Link>
           </li>
         </ul>
       </nav>
