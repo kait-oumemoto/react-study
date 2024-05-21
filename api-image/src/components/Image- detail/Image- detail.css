@@ -1,0 +1,25 @@
+.dogs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* カード間のスペース */
+}
+
+.dog-item {
+  flex: 1 1 calc(33.333% - 20px); /* 3列表示、スペースを考慮 */
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.dog-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.dog-item p {
+  margin: 5px 0;
+}

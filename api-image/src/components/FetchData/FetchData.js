@@ -108,7 +108,9 @@ const FetData = () => {
       ) : (
         <p>Loading...</p>
       )}
-      <button onClick={NextDog}>違う犬を探す</button>
+      <button className="dog-next" onClick={NextDog}>
+        違う犬を探す
+      </button>
     </div>
   );
 };
