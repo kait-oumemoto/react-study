@@ -1,3 +1,4 @@
+// 各コンポーネントに犬の情報を共有するコンポーネント
 import React, { createContext, useState } from "react";
 
 export const DogContext = createContext();

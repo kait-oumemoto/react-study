@@ -1,4 +1,5 @@
 // お気に入り
+
 import React, { useContext } from "react";
 import { DogContext } from "../Context/DogContext";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +9,11 @@ const Favorite = () => {
   let navigate = useNavigate();
   // 犬の情報が入ったstateを取得
   const { dogDataList, setDogDataList } = useContext(DogContext);
-
+  // 詳細画面に遷移する関数
   const DetailClick = (id) => {
     navigate(`/detail/${id}`);
   };
+  // 特定の犬をお気に入りから消す関数
   const eraseClick = (id) => {
     const newDogDataList = dogDataList.filter((dog) => dog.id !== id);
     setDogDataList(newDogDataList);

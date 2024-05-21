@@ -13,8 +13,9 @@ const FetData = () => {
   // 画像を取得するためのstate
   const [imageUrl, setImageUrl] = useState([]);
 
-  // Contextの関数を取得
+  // お気に入りの犬データを管理するコンテキストを取得
   const { dogDataList, setDogDataList } = useContext(DogContext);
+  // アプリケーション内でプログラム的にナビゲート（ページ遷移）するために使用
   const navigate = useNavigate();
   // APIにアクセスするためのキー
   const API_KEY =
@@ -42,9 +43,11 @@ const FetData = () => {
           },
         }
       );
-      // 配列には少なくとも1つの要素が含まれていれば真なので、中の処理を実行
+
       console.log(response.data);
+      // 配列に少なくとも1つの要素が含まれていれば真なので、中の処理を実行
       if (response.data.length > 0) {
+        // APIから取得したデータを整形して、fetchedDogs配列に格納
         const fetchedDogs = response.data.map((dogData) => {
           const breed = dogData.breeds[0] || {
             name: "Unknown Breed",
@@ -78,16 +81,17 @@ const FetData = () => {
   useEffect(() => {
     // fetchDogImage関数を呼び出す
     fetchDogImage();
-    //
   }, [API_KEY]);
-
+  // お気に入り登録
   const Registration = (dog) => {
     // 配列に新しいデータを追加
     setDogDataList([...dogDataList, dog]);
   };
+  // 違う犬の画像一覧の更新関数
   const NextDog = () => {
     fetchDogImage();
   };
+  // 詳細画面に遷移する関数
   const showDetails = (id) => {
     navigate(`/detail/${id}`);
   };

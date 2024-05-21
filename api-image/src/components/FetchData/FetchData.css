@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px; /* カード間のスペース */
+  background-color: rgb(228, 224, 137);
 }
 
 .dog-item {
