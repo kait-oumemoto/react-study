@@ -23,3 +23,8 @@
 .dog-item p {
   margin: 5px 0;
 }
+.notification {
+  color: green;
+  font-weight: bold;
+  margin: 10px 0;
+}

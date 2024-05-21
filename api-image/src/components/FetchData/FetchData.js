@@ -15,8 +15,10 @@ const FetData = () => {
 
   // お気に入りの犬データを管理するコンテキストを取得
   const { dogDataList, setDogDataList } = useContext(DogContext);
+
   // アプリケーション内でプログラム的にナビゲート（ページ遷移）するために使用
   const navigate = useNavigate();
+
   // APIにアクセスするためのキー
   const API_KEY =
     "live_CAYtJ89PvWAC4RfRTjCTNKyNq9j4XrwmbmFgJbaqBydfBHc9Kx2OTK1EWKxBuwSw"; // APIキーをここに入力
@@ -83,7 +85,7 @@ const FetData = () => {
     fetchDogImage();
   }, [API_KEY]);
   // お気に入り登録
-  const Registration = (dog) => {
+  const addFavorite = (dog) => {
     // 配列に新しいデータを追加
     setDogDataList([...dogDataList, dog]);
   };
@@ -106,7 +108,7 @@ const FetData = () => {
               onClick={() => showDetails(dog.id)}
             />
             <p>品種: {dog.breed.name}</p>
-            <button onClick={() => Registration(dog)}>お気に入り</button>
+            <button onClick={() => addFavorite(dog)}>お気に入り</button>
           </div>
         ))
       ) : (

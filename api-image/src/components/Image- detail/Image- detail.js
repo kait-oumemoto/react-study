@@ -8,15 +8,23 @@ import { DogContext } from "../Context/DogContext";
 const Detail = () => {
   // URLのパラメータから犬のIDを取得
   const { id } = useParams();
+
   // お気に入りの犬データを管理するコンテキストを取得
   const { dogDataList, setDogDataList } = useContext(DogContext);
+
   // 犬の詳細情報を保持するstate
   const [dogDetails, setDogDetails] = useState(null);
+
   // エラーメッセージを保持するstate
   const [error, setError] = useState("");
+
   // The Dog APIにアクセスするためのキー
   const API_KEY =
     "live_CAYtJ89PvWAC4RfRTjCTNKyNq9j4XrwmbmFgJbaqBydfBHc9Kx2OTK1EWKxBuwSw";
+
+  // 通知メッセージのstate
+  const [notification, setNotification] = useState("");
+
   // 副作用の処理
   useEffect(() => {
     // asyncで非同期関数の宣言
@@ -58,6 +66,8 @@ const Detail = () => {
       };
       // setDogDataList を使って、お気に入りリストに favoriteDog を追加
       setDogDataList([...dogDataList, favoriteDog]);
+      setNotification("お気に入りに登録しました！");
+      setTimeout(() => setNotification(""), 3000); // 3秒後に通知をクリア
     }
   };
 
@@ -108,6 +118,8 @@ const Detail = () => {
     <div>
       <h2>犬の詳細</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {/* 通知メッセージを表示 */}
+      {notification && <p>{notification}</p>}
       <div className="dogs-list">
         {dogDetails ? (
           <div className="dog-item">
